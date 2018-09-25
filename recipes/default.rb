@@ -42,7 +42,7 @@ if node['a2'].attribute?('version')
     notifies :run, 'execute[Deploy Automate Version]', :immediately
   end
 
-  node.default['a2']['install_opts'] = "  --manifest-dir /tmp/manifests/ --channel current --upgrade-strategy none --skip-preflight"
+  node.default['a2']['install_opts'] = "--manifest-dir /tmp/manifests/ --channel current --upgrade-strategy none --skip-preflight"
 end
 
 execute 'Create Config' do
@@ -52,7 +52,7 @@ execute 'Create Config' do
 end
 
 execute 'Deploy Automate' do
-  command "yes | chef-automate deploy #{node['a2']['install_opts']}  config.toml"
+  command "chef-automate deploy #{node['a2']['install_opts']} --accept-terms-and-mlsa config.toml"
   cwd Chef::Config[:file_cache_path]
   subscribes :run, 'execute[Create Config]', :immediately
   action :nothing
