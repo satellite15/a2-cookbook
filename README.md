@@ -1,7 +1,5 @@
 # a2
 
-Documentation for the Automate 2 evaluation: https://docs.google.com/document/d/1rsar-bjgeHVW3_eNv23uX5khfDmPOAasbcrNyU-p3I8/edit
-
 This will setup an Ubuntu 16.04 VM for A2. In order for this to work
 correctly the VM requires 2GB of RAM. 
 
