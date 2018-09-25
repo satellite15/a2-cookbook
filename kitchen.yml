@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 2048
+  network:
+    - ["private_network", {ip: "192.168.33.199"}]
+
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-16.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[a2::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
